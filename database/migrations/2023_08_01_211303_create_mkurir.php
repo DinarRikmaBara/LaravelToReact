@@ -14,7 +14,15 @@ class CreateMkurir extends Migration
     public function up()
     {
         Schema::create('mkurir', function (Blueprint $table) {
-            $table->id();
+            $table->id('idMk');
+            $table->unsignedBigInteger('kurirId');
+            $table->foreign('kurirId')->references('idKurir')->on('kurir')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('provinsi');
+            $table->string('kabupaten');
+            $table->string('kecamatan');
+            $table->string('desa');
+            $table->string('dusun');
+            $table->string('alamatDetail');
             $table->timestamps();
         });
     }

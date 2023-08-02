@@ -14,7 +14,12 @@ class CreateKurir extends Migration
     public function up()
     {
         Schema::create('kurir', function (Blueprint $table) {
-            $table->id();
+            $table->id('idKurir');
+            $table->string('namaKurir');
+            $table->enum('kelamin', ['pria', 'perempuan'])->nullable()->default('pria');
+            $table->string('umur');
+            $table->string('telepon');
+            $table->enum('statusKurir', ['aktif', 'nonaktif'])->nullable()->default('nonaktif');
             $table->timestamps();
         });
     }

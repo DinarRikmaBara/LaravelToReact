@@ -14,7 +14,15 @@ class CreateMUser extends Migration
     public function up()
     {
         Schema::create('m_user', function (Blueprint $table) {
-            $table->id();
+            $table->id('idMU');
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('idUser')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('provinsi');
+            $table->string('kabupaten');
+            $table->string('kecamatan');
+            $table->string('desa');
+            $table->string('dusun');
+            $table->string('alamatDetail');
             $table->timestamps();
         });
     }

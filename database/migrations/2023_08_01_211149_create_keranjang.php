@@ -14,7 +14,13 @@ class CreateKeranjang extends Migration
     public function up()
     {
         Schema::create('keranjang', function (Blueprint $table) {
-            $table->id();
+            $table->id('idKeranjang');
+            $table->unsignedBigInteger('produkId');
+            $table->foreign('produkId')->references('idProduk')->on('produk')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('idUser')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('jumlahProduk');
+            $table->enum('statusKeranjang', ['pending', 'done'])->nullable()->default('pending');
             $table->timestamps();
         });
     }

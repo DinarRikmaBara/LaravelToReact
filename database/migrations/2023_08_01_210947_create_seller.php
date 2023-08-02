@@ -14,7 +14,12 @@ class CreateSeller extends Migration
     public function up()
     {
         Schema::create('seller', function (Blueprint $table) {
-            $table->id();
+            $table->id('idSeller');
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('idUser')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('gambar');
+            $table->string('namaToko');
+            $table->enum('statusSeller', ['buka', 'tutup'])->nullable()->default('tutup');
             $table->timestamps();
         });
     }

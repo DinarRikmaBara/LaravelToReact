@@ -14,7 +14,9 @@ class CreateComplain extends Migration
     public function up()
     {
         Schema::create('complain', function (Blueprint $table) {
-            $table->id();
+            $table->id('idComplain');
+            $table->string('ulasan');
+            $table->string('ranting');
             $table->timestamps();
         });
     }

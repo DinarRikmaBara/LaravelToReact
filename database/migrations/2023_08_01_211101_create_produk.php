@@ -14,7 +14,16 @@ class CreateProduk extends Migration
     public function up()
     {
         Schema::create('produk', function (Blueprint $table) {
-            $table->id();
+            $table->id('idProduk');
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('idUser')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('gambarProduk');
+            $table->string('namaProduk');
+            $table->enum('jenis', ['makanan', 'minuman'])->nullable()->default('makanan');
+            $table->string('harga');
+            $table->string('deskripsi');
+            $table->enum('statusProduk', ['publish', 'nopublish'])->nullable()->default('nopublish');
+            $table->enum('delete', ['true', 'false'])->nullable()->default('false');
             $table->timestamps();
         });
     }
